@@ -1,0 +1,94 @@
+{% extends 'site_functions/base.html' %}
+
+{% block content %}
+{% load static %}
+{% load bootstrap %}
+
+<section id="cronograma">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="texto-centro titulo">V SEMPGAN</h1>
+				<h1 class="texto-centro titulo">Cadastro</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section>
+	<br><br>
+	<div class="container">
+		{% if status == 0 %}
+			<div class="row">
+				<div class="col-sm-6">
+					<form method="POST" enctype="multipart/form-data" class="post-form" name='f'>
+					{% csrf_token %}
+						<div class="form-group">{{ form|bootstrap }}</div>
+						<button type="submit" class="save btn btn-primary">Submeter inscrição</button>
+					</form>
+				</div>
+				<div class="col-sm-6">
+					{% if msg %}
+						<div id='sombraclara'>{{msg}}</div>
+					{% endif %}
+					<br>
+					<div id="sombraclara">Período de Inscrições:<br> 09 de outubro a 15 de novembro de 2017.</div>
+					<div id="sombraclara">A inscrição é gratuita.</div>
+				</div>
+			</div>
+
+			<br><br>
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+		{% elif status == 1 %}
+			<div id="sombraclara">Vagas esgotadas. Até o próximo SEMPGAN.</div>
+			<br>
+		{% else %}
+			<div id="sombraclara">Inscrições encerradas. Até o próximo SEMPGAN.</div>
+			<br>
+		{% endif %}
+	</div>
+</section>
+
+<script>
+	function formater() { //123.456.789- //made by Jeotaro
+			var original = (f.cpf.value);
+			original = original.replace(/\.|-/ig, '');
+			var tam = [3, 6, 9];
+			var s = ['.', '.', '-'];
+			var result = "";
+			tam.map(function(m, i) {
+					result += (original.substring(3 * (Math.floor(m / 3) - 1), m) + ((original.length >= m + 1) ? s[i] : ''));
+			});
+			result += ((original.length > 9) ? original.substring(9, original.length) : '');
+			f.cpf.value = result;
+	}
+
+	document.getElementById("id_local_de_atuacao").disabled=true;
+	document.getElementById("id_profissao").disabled=true;
+
+	function choiceFunc(){
+		var grad = document.getElementById("id_modalidade");
+
+		if(grad.selectedIndex==0){
+			document.getElementById("id_instituicao").disabled=false;
+			document.getElementById("id_curso").disabled=false;
+			document.getElementById("id_local_de_atuacao").disabled=true;
+			document.getElementById("id_profissao").disabled=true;
+		}else{
+			document.getElementById("id_instituicao").disabled=true;
+			document.getElementById("id_curso").disabled=true;
+			document.getElementById("id_local_de_atuacao").disabled=false;
+			document.getElementById("id_profissao").disabled=false;
+		}
+
+	}
+</script>
+
+{% endblock %}
