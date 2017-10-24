@@ -1,6 +1,6 @@
-# Third SIPPAN Site
+# Multivariate Statistical Methods Course Website (Métodos Estatísticos Multivariados)
 
-SIPPAN is an event of a technical-scientific nature, held annually by the Graduate Program in Food and Nutrition (PPGAN) of the Federal University of Piauí.
+Federal University of Piauí event.
 
 ## Dependency
 
