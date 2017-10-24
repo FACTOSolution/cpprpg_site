@@ -1,0 +1,6 @@
+db.sqlite3
+media
+mem_site/__pycache__
+mem_site/config.py
+site_functions/__pycache__
+*.pyc
